@@ -1,0 +1,3 @@
+créer un réseau : netsh wlan set hostednetwork mode=allow ssid="nom_reseau" key="mot_de_passe_compris_entre_0_et_8_caractéres" 
+lancer un reseau créer  : netsh wlan start hostednetwork 
+stopper un reseau créer: netsh wlan stop hostednetwork 

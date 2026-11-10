@@ -1,0 +1,186 @@
+# BUSINESS PLAN - STARK LOG
+
+## 1. Resume executif
+
+Stark Log est une application desktop de monitoring et de gestion systeme, developpee en Python. Elle rassemble dans une interface claire la surveillance de la RAM et des processus, l'optimisation, la gestion du cache DNS, l'exploration des fichiers et un espace communautaire temps reel.
+
+L'ambition est de devenir l'outil de reference pour les particuliers, freelances et petites equipes qui veulent comprendre, entretenir et securiser leur ordinateur sans installer une suite lourde ou multiplier les utilitaires. Le lancement repose sur un modele freemium: une edition gratuite utile au quotidien et une offre Pro abordable avec automatisation, historiques, alertes et assistance avancee.
+
+Objectifs des 36 premiers mois:
+- atteindre 10 000 utilisateurs actifs mensuels;
+- convertir 5 a 8 % des utilisateurs gratuits en abonnes Pro;
+- atteindre l'equilibre operationnel avec une base de 1 000 abonnes payants;
+- construire une marque de confiance autour de la transparence et du respect des donnees.
+
+## 2. Probleme et opportunite
+
+Les utilisateurs constatent souvent un ordinateur lent, une memoire saturee, un stockage difficile a analyser ou des problemes reseau sans savoir quelle action entreprendre. Les solutions existantes sont dispersees, techniques, financees par la publicite ou associees a des pratiques agressives de nettoyage.
+
+L'opportunite vient de la hausse du teletravail, de la duree de vie prolongee des ordinateurs et de la demande pour des logiciels simples, legers et respectueux de la vie privee. Les petites entreprises ont egalement besoin d'une visibilite de base sur leurs postes, sans le cout d'une plateforme ITSM complete.
+
+## 3. Produit et proposition de valeur
+
+Stark Log fournit un tableau de bord unique pour:
+- suivre la RAM, les processus actifs, les disques et le stockage en temps reel;
+- identifier puis fermer les applications consommatrices;
+- nettoyer les caches systeme et consulter ou vider le cache DNS;
+- parcourir les fichiers et afficher les informations utiles sur les volumes;
+- utiliser un chat communautaire synchronise en temps reel;
+- gerer un compte, une session et des preferences d'affichage.
+
+Promesse produit: "Comprendre son ordinateur, agir en confiance, garder le controle."
+
+Les principes produit sont la lisibilite, la reversibilite des actions sensibles, la performance, la compatibilite Windows/macOS/Linux et la minimisation des donnees collectees.
+
+## 4. Clients cibles
+
+### Segment prioritaire: particuliers et freelances
+
+Personnes utilisant leur ordinateur pour travailler, etudier, creer ou jouer, qui veulent diagnostiquer rapidement les ralentissements sans connaissances avancees. Elles recherchent une installation simple et un prix inferieur aux suites de securite ou d'optimisation traditionnelles.
+
+### Segment secondaire: petites equipes
+
+Agences, associations, studios et startups de 5 a 50 postes. Elles ont besoin d'un inventaire de sante simple, de recommandations et d'un support centralise, sans deployer une infrastructure complexe.
+
+### Segment futur: partenaires IT
+
+Techniciens independants et prestataires de proximite pouvant utiliser une console multi-postes, des rapports exportables et une marque blanche.
+
+## 5. Analyse concurrentielle et differenciation
+
+Les concurrents se repartissent entre outils natifs du systeme, nettoyeurs grand public, antivirus et solutions professionnelles de supervision. Stark Log ne cherche pas a remplacer les outils de securite: il se positionne entre le gestionnaire systeme natif, trop technique, et les suites commerciales, souvent trop larges.
+
+Avantages defendables:
+- experience unifiee et pedagogique autour de la sante du poste;
+- application legere, multiplateforme et extensible;
+- communaute integree pour obtenir de l'aide et partager des pratiques;
+- architecture modulaire permettant d'ajouter alertes, rapports et automatisations;
+- positionnement de confiance: permissions explicites, code documente et collecte limitee.
+
+Le principal avantage devra etre valide par des tests utilisateurs et non seulement par la liste des fonctionnalites.
+
+## 6. Modele economique
+
+### Offre gratuite
+
+Monitoring en temps reel, gestion basique des processus, navigation de fichiers, outils DNS essentiels et acces limite a la communaute. Cette version sert d'acquisition et permet de demontrer la valeur avant paiement.
+
+### Offre Pro: 4,99 EUR par mois ou 49 EUR par an
+
+Historiques de performance, alertes personnalisees, nettoyage programme, rapports exportables, profils d'optimisation, priorite du support et experience sans publicite. L'abonnement annuel reduit le churn et finance le support.
+
+### Offre Team: 9 EUR par poste et par mois, minimum 5 postes
+
+Vue multi-postes, politiques partagees, rapports de sante, roles utilisateurs et support renforce. Cette offre sera lancee apres validation du segment particulier.
+
+### Revenus complementaires
+
+Partenariats avec des techniciens certifies, commissions d'affiliation strictement selectionnees et prestations d'accompagnement. Stark Log n'exploitera pas les donnees personnelles a des fins publicitaires.
+
+## 7. Strategie commerciale et marketing
+
+1. Lancer une beta publique gratuite avec mesure de l'activation, des actions realisees et de la retention.
+2. Publier des contenus pratiques sur la RAM, le stockage, le DNS et le diagnostic de lenteur, avec une approche educative.
+3. Distribuer l'application via le site officiel, GitHub et les canaux de telechargement adaptes a chaque plateforme.
+4. Developper la communaute par le chat, un forum de support et des programmes de recommandation.
+5. Approcher les ecoles, espaces de coworking, associations et prestataires IT avec des licences d'essai.
+
+Le parcours de conversion sera: installation, premier diagnostic en moins de cinq minutes, recommandation claire, essai Pro de 14 jours, puis abonnement. Les messages marketing resteront factuels et ne promettront jamais de gains de performance impossibles a garantir.
+
+## 8. Plan produit sur 24 mois
+
+### Phase 1 - Validation, mois 0 a 3
+
+- stabiliser l'installation et la desinstallation;
+- ajouter telemetrie strictement consentie et rapports d'erreur anonymises;
+- tester l'onboarding avec 20 a 30 utilisateurs;
+- documenter les permissions et les limites des actions de nettoyage;
+- publier une beta Windows, puis valider macOS et Linux.
+
+### Phase 2 - Monétisation, mois 4 a 9
+
+- integrer paiements, licences et essai Pro;
+- ajouter alertes RAM, disque et processus;
+- conserver des historiques locaux avec export volontaire;
+- mettre en place support, FAQ et collecte de retours;
+- atteindre 1 000 utilisateurs actifs mensuels.
+
+### Phase 3 - Equipes, mois 10 a 18
+
+- creer une console Team et des rapports planifies;
+- renforcer les controles de permission et la journalisation;
+- proposer une gestion de parc limitee et respectueuse;
+- signer les executables et automatiser les mises a jour.
+
+### Phase 4 - Extension, mois 19 a 24
+
+- lancer les recommandations intelligentes explicables;
+- ouvrir une API documentee;
+- developper les partenariats IT;
+- mesurer la rentabilite par segment et ajuster les offres.
+
+## 9. Architecture et operations
+
+Le client desktop s'appuie sur Python, CustomTkinter, Psutil et Matplotlib. Supabase fournit l'authentification, la persistance du chat et les synchronisations temps reel. Les secrets restent dans des variables d'environnement et les regles RLS isolent les donnees des utilisateurs.
+
+Priorites operationnelles:
+- tests automatises sur les services critiques et les trois systemes cibles;
+- distribution signee et controle d'integrite des mises a jour;
+- sauvegarde et supervision du backend;
+- politique de confidentialite claire et processus de suppression des comptes;
+- support de niveau 1 par documentation, puis support humain pour les abonnes.
+
+Les fonctions pouvant fermer des applications ou vider le DNS doivent demander confirmation, signaler les droits requis et proposer un retour en arriere lorsque c'est possible.
+
+## 10. Hypotheses financieres indicatives
+
+Hypotheses de base: abonnement Pro moyen de 4,50 EUR par mois apres remises annuelles, conversion progressive vers 6 %, churn mensuel inferieur a 4 %, couts variables cloud et paiement de 0,60 EUR par abonne, et acquisition principalement organique.
+
+Projection simplifiee:
+
+| Annee | Utilisateurs actifs mensuels | Abonnes Pro moyens | Chiffre d'affaires estime |
+|---|---:|---:|---:|
+| 1 | 1 500 | 60 | 5 000 EUR |
+| 2 | 5 000 | 300 | 25 000 EUR |
+| 3 | 10 000 | 800 | 75 000 EUR |
+
+Ces montants sont des objectifs de pilotage et non une prevision garantie. Le seuil de rentabilite dependra surtout du temps de developpement, du support et du budget d'acquisition. Une enveloppe initiale de 30 000 a 50 000 EUR permettrait de financer 12 mois de stabilisation, distribution, juridique, support et marketing cible.
+
+## 11. Indicateurs de performance
+
+- activation: premier diagnostic termine dans les 24 heures;
+- retention a 30 jours et utilisateurs actifs mensuels;
+- taux de conversion vers Pro et revenu mensuel recurrent;
+- churn, cout d'acquisition et valeur vie client;
+- taux de plantage, temps de demarrage et consommation memoire;
+- tickets resolus, satisfaction et recommandations;
+- part des utilisateurs ayant donne un consentement explicite aux donnees optionnelles.
+
+## 12. Risques et mesures de reduction
+
+**Perception de risque systeme:** documenter chaque action, limiter les privileges et ajouter des confirmations explicites.
+
+**Concurrence des outils gratuits:** se concentrer sur la simplicite, le diagnostic guide et une communaute active.
+
+**Compatibilite multiplateforme:** automatiser les tests par OS et sortir les fonctions par niveau de maturite.
+
+**Couts Supabase et support:** mesurer l'usage, fixer des limites raisonnables et privilegier le stockage local pour les historiques.
+
+**Reglementation et confidentialite:** appliquer le principe de minimisation, publier une politique claire et permettre l'export ou la suppression des donnees.
+
+**Faible conversion:** conduire des entretiens, tester le prix et vendre d'abord une douleur mesurable plutot qu'une longue liste de fonctions.
+
+## 13. Besoin de financement et prochaines decisions
+
+Le financement initial doit servir a transformer un prototype fonctionnel en produit commercial fiable: tests, signature des binaires, mise a jour, paiements, support et acquisition. La priorite n'est pas d'ajouter rapidement des fonctions, mais de prouver que les utilisateurs reviennent et paient pour une valeur repetable.
+
+Prochaines decisions recommandees:
+1. recruter les premiers beta-testeurs et definir le profil d'utilisateur ideal;
+2. mesurer la retention et les actions qui precedent l'abonnement;
+3. valider le prix par entretiens et page de preinscription;
+4. securiser la distribution et le traitement des donnees;
+5. lancer l'offre Pro seulement apres validation de l'usage recurrent.
+
+## Conclusion
+
+Stark Log dispose d'une base produit differenciee et d'un socle technique adapte a une premiere commercialisation. Sa reussite dependra de la confiance, de la stabilite et de la preuve d'une valeur reguliere. Une strategie freemium disciplinee, orientee validation et retention, offre le meilleur chemin pour faire evoluer l'application vers un service rentable pour particuliers puis petites equipes.

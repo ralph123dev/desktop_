@@ -1,0 +1,209 @@
+PROMPT À DONNER À CLAUDE — CRÉATION DU SITE WEB DE STARK LOG
+================================================================
+
+Tu es un développeur front-end senior et un designer produit. Ta mission est
+d'analyser le projet présent dans ce dépôt, puis de concevoir et réaliser un
+site web de présentation professionnel, moderne et entièrement responsive pour
+Stark Log.
+
+IMPORTANT : Stark Log est actuellement un logiciel desktop écrit en Python avec
+CustomTkinter. Le site à créer est un site de présentation du logiciel ; il ne
+doit pas prétendre être l'application desktop, ni simuler une connexion réelle
+au système de l'utilisateur.
+
+1. AVANT DE CODER
+-----------------
+- Parcours les fichiers du projet, en particulier README.md, GUIDE.md,
+  requirements.txt, main.py, ui/app.py, ui/frames/, services/ et config/.
+- Base le contenu sur les fonctions réellement présentes dans le code.
+- Repère et respecte les différences entre la documentation et l'implémentation.
+- Ne modifie pas le fonctionnement de l'application Python.
+- N'écrase pas le package.json existant : ses scripts concernent actuellement
+  le projet Python. Si aucun front-end web n'est déjà configuré, crée une
+  application web isolée dans un dossier dédié (par exemple web/) et ajoute-y
+  sa propre configuration.
+- Fais les choix techniques les plus simples compatibles avec le dépôt. Si tu
+  crées un nouveau front-end, privilégie React, TypeScript et Vite.
+- Ne t'arrête pas à une maquette ou à une proposition : implémente les pages et
+  leurs interactions, puis vérifie que le site démarre et compile.
+
+2. POSITIONNEMENT ET VÉRACITÉ
+-----------------------------
+Présente Stark Log comme un outil desktop de supervision et de gestion du
+système, destiné aux personnes qui veulent consulter les ressources de leur
+ordinateur et retrouver plusieurs outils dans une interface unique.
+
+Fonctions à présenter, avec des formulations prudentes :
+- Tableau de bord et suivi de la mémoire vive, avec graphique d'utilisation.
+- Consultation de la liste des processus et possibilité d'en arrêter certains.
+- Informations de stockage : occupation des disques et navigation dans les
+  fichiers avec aperçu limité de fichiers texte.
+- Informations réseau : compteurs de trafic envoyé/reçu, adresses IP et liste
+  de ports en écoute.
+- Outils de consultation/vidage du cache DNS et d'optimisation système.
+- Outils expérimentaux liés au hotspot Windows et aux clés USB.
+- Interface desktop en Python/CustomTkinter, préférences locales, thèmes sombre
+  et clair, graphiques en courbe ou en cercle.
+
+Ne présente pas comme des fonctions garanties ou opérationnelles sans les avoir
+vérifiées dans le code :
+- Une application web ou mobile Stark Log.
+- Un chat en temps réel, une synchronisation cloud ou un stockage cloud
+  fonctionnels.
+- Une protection antivirus certifiée, une détection générale de logiciels
+  malveillants ou une promesse de sécurité absolue.
+- Une compatibilité identique de toutes les opérations sous Windows, macOS et
+  Linux.
+- Des gains de performances garantis, des chiffres de benchmark ou des
+  résultats inventés.
+
+Certains modules et documents du dépôt ne concordent pas. En particulier,
+présente le chat/Supabase comme absent, expérimental ou non confirmé tant que
+l'inspection du code ne démontre pas qu'il est accessible et fonctionnel dans
+l'application actuelle. Le hotspot et plusieurs opérations USB sont liés à
+Windows. L'arrêt de processus, le vidage DNS et les opérations sur une clé USB
+peuvent nécessiter des droits élevés ; le formatage d'une clé efface ses
+données. Affiche ces avertissements de manière visible et compréhensible.
+N'expose jamais de clé, mot de passe, secret d'API ou identifiant trouvé dans
+les fichiers du dépôt.
+
+Si une information est incertaine, omets-la ou qualifie-la clairement. Ne
+fabrique ni témoignages, ni avis clients, ni statistiques, ni prix, ni liens de
+téléchargement. Utilise des liens de téléchargement faciles à remplacer et
+indique clairement où configurer l'URL réelle. Si aucun installateur n'est
+présent dans le dépôt, ne prétends pas qu'un téléchargement prêt à l'emploi
+existe.
+
+3. PAGES ET NAVIGATION
+----------------------
+Crée au minimum ces cinq pages/routes distinctes, accessibles depuis une
+navigation claire :
+
+1. ACCUEIL — /
+   - Barre de navigation avec logo/nom Stark Log et liens vers les pages.
+   - Hero avec une proposition de valeur précise, un court sous-titre et deux
+     appels à l'action : « Découvrir les fonctionnalités » et « Télécharger »
+     (ce dernier mène à la page Télécharger, sans URL fictive).
+   - Grande illustration originale d'un tableau de bord desktop : cartes de
+     mémoire, processeur, stockage et activité réseau. Les données doivent être
+     explicitement décoratives/de démonstration et ne pas laisser croire à une
+     mesure réelle de la machine du visiteur.
+   - Sections « Tout votre système en un coup d'œil », points forts, aperçu des
+     outils, compatibilité/prérequis prudents, et appel à l'action final.
+
+2. FONCTIONNALITÉS — /fonctionnalites
+   - Présente les outils par catégories : supervision, processus, stockage et
+     fichiers, réseau, maintenance, personnalisation.
+   - Décris les usages concrets et les limites de chaque catégorie.
+   - Utilise des cartes visuelles, une hiérarchie claire et des icônes
+     cohérentes. Ne transforme pas les modules expérimentaux en promesses.
+
+3. SÉCURITÉ & FONCTIONNEMENT — /securite
+   - Explique simplement l'architecture connue : application desktop Python,
+     interface CustomTkinter, collecte système avec psutil, graphiques
+     Matplotlib, préférences locales.
+   - Distingue clairement collecte locale et services réseau éventuels.
+   - Décris les permissions nécessaires selon les opérations et les systèmes.
+   - Ajoute un avertissement explicite avant tout contenu relatif à la
+     fermeture de processus, au nettoyage et au formatage USB ; rappelle que le
+     formatage détruit les données.
+   - Ne prétends pas à une certification, à un audit de sécurité ou à une
+     protection antivirus complète.
+
+4. TÉLÉCHARGER & INSTALLER — /telecharger
+   - Présente les prérequis et étapes d'installation uniquement d'après les
+     fichiers réels du projet, notamment README.md et requirements.txt.
+   - Prévois une zone de téléchargement dont le lien peut être configuré sans
+     inventer de binaire ou de release.
+   - Explique l'installation Python/dépendances et le lancement si aucun
+     installateur officiel n'est fourni.
+   - Ajoute les notes de compatibilité : les fonctions ordinaires de suivi
+     système peuvent différer selon l'OS ; le hotspot et certains outils USB
+     sont spécifiques à Windows.
+   - Ajoute un bloc « Besoin d'aide ? » pointant vers les ressources réellement
+     disponibles dans le dépôt, ou des liens à configurer clairement.
+
+5. FAQ & À PROPOS — /faq
+   - Réponds notamment à : Stark Log est-il un site ou un logiciel desktop ?,
+     quels systèmes sont visés ?, faut-il des droits administrateur ?, le site
+     collecte-t-il les métriques du visiteur ?, que fait l'outil USB et quelles
+     précautions prendre ?, comment installer le logiciel ?
+   - Réponds honnêtement et à partir du dépôt. Si une réponse n'est pas
+     confirmée, indique-le au lieu de l'inventer.
+   - Ajoute un bloc À propos et des liens de contact configurables, sans inventer
+     d'adresse ou de réseau social.
+
+Le menu doit fonctionner sur ordinateur et mobile. Ajoute un footer cohérent
+avec les liens internes, la version affichée seulement si elle est confirmée,
+et une mention sobre de Stark Log.
+
+4. DIRECTION ARTISTIQUE
+-----------------------
+Créer une identité visuelle de produit tech soignée, distinctive et crédible :
+- Interface sombre par défaut : fond bleu nuit/noir, surfaces légèrement
+  contrastées, texte clair et accents cyan électrique inspirés du logiciel.
+- Utilise une couleur secondaire avec mesure (vert/ambre) pour les états et les
+  graphiques, sans faire ressembler l'interface à un tableau de bord d'alerte
+  permanent.
+- Typographie moderne, très lisible, espacements généreux, titres affirmés et
+  textes faciles à parcourir.
+- Cartes avec bordures discrètes, profondeur légère, rayons cohérents et
+  contrastes accessibles. Évite les effets « glassmorphism » excessifs, les
+  dégradés omniprésents et les éléments décoratifs sans fonction.
+- Crée des visuels de produit originaux en HTML/CSS/SVG ou avec les dépendances
+  déjà disponibles. N'utilise pas d'images de marque ou de captures inventées
+  comme si elles provenaient réellement du logiciel.
+- Fournis aussi un mode clair si cela reste cohérent avec le design.
+- Le résultat doit être soigné sur mobile, tablette et grand écran ; pas de
+  débordement horizontal ni de sections difficiles à lire.
+
+5. ANIMATIONS ET TRANSITIONS
+----------------------------
+Ajoute des animations élégantes, fluides et rapides, au service de la
+compréhension :
+- Transitions discrètes entre pages et lors des changements d'état.
+- Apparition progressive des sections au défilement, sans retarder l'accès au
+  contenu.
+- Hover/focus subtils sur les boutons, cartes et liens.
+- Animation mesurée des graphiques décoratifs du hero ; les valeurs restent
+  clairement des données d'exemple.
+- Menu mobile animé et accessible.
+
+Respecte obligatoirement prefers-reduced-motion : réduire ou supprimer les
+animations non essentielles à la demande. Évite les animations continues qui
+gênent la lecture, les effets lourds, et toute animation qui empêche les
+interactions ou le chargement du contenu.
+
+6. EXIGENCES DE QUALITÉ
+-----------------------
+- Français correct, naturel et cohérent sur toutes les pages.
+- Accessibilité : HTML sémantique, navigation clavier, focus visible, contrastes
+  suffisants, libellés accessibles, alternatives textuelles pour les visuels.
+- Responsive et utilisable sans souris.
+- SEO de base : titres et descriptions propres par page, structure de titres
+  logique, métadonnées, favicon si des ressources adaptées existent.
+- Liens et boutons fonctionnels ; aucun contrôle purement décoratif présenté
+  comme une action réelle.
+- Pas de formulaire qui prétend envoyer des données si aucun service n'existe.
+  Les liens/contact non disponibles doivent être facilement configurables et
+  clairement identifiés dans le code.
+- Dépendances raisonnables et code lisible, typé si TypeScript est utilisé.
+- N'ajoute aucun secret ni donnée personnelle.
+- Préserve tous les fichiers et comportements du logiciel Python ; limite les
+  changements aux fichiers nécessaires au site.
+
+7. LIVRAISON ET VÉRIFICATION
+---------------------------
+À la fin :
+- Vérifie que les cinq pages sont accessibles et que la navigation fonctionne.
+- Lance le build ou la vérification disponible pour le front-end ; corrige les
+  erreurs causées par tes changements.
+- Vérifie le rendu aux tailles mobile et desktop si l'environnement le permet.
+- Donne un résumé des fichiers créés, des choix techniques, des commandes pour
+  lancer le site, et des liens de téléchargement/contact qui restent à
+  configurer.
+- Signale les fonctionnalités de l'application que le code ou la documentation
+  ne permet pas de confirmer.
+
+Commence par examiner le dépôt, puis réalise le site complet en respectant
+toutes ces consignes.

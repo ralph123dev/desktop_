@@ -1,0 +1,19 @@
+{
+  "name": "stark-log",
+  "version": "1.0.0",
+  "description": "Stark Log - Advanced System Monitoring Application",
+  "scripts": {
+    "build": "python3 -m py_compile main.py && python3 -m py_compile config/*.py && python3 -m py_compile services/*.py && python3 -m py_compile ui/*.py && python3 -m py_compile ui/frames/*.py && python3 -m py_compile ui/widgets/*.py && echo 'Build successful - All Python files compiled!'",
+    "start": "python3 main.py",
+    "verify": "python3 verify.py",
+    "test": "python3 test_imports.py"
+  },
+  "keywords": [
+    "monitoring",
+    "python",
+    "desktop",
+    "system"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

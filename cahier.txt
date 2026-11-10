@@ -1,0 +1,72 @@
+# CAHIER DES CHARGES - STARK LOG
+
+## 1. Présentation Générale
+**Stark Log** est une application desktop de monitoring et de gestion système complète. Elle est conçue pour offrir aux utilisateurs une vue d'ensemble en temps réel des performances de leur machine tout en proposant des outils d'optimisation et de communication communautaire.
+
+## 2. Objectifs du Logiciel
+Le logiciel sert à :
+- Surveiller les ressources système (RAM, CPU, Disques).
+- Optimiser les performances de l'ordinateur en libérant de la mémoire et en nettoyant les caches.
+- Gérer les fichiers du système de manière intuitive.
+- Offrir un espace de discussion en temps réel pour la communauté d'utilisateurs.
+
+## 3. Fonctionnalités Détaillées
+
+### 📊 Dashboard (Tableau de Bord)
+- **Monitoring en temps réel** : Suivi de l'utilisation de la RAM avec des graphiques dynamiques (Matplotlib).
+- **Indicateurs visuels** : Codes couleurs changeant selon la charge (Bleu → Jaune → Rouge).
+- **Liste des processus** : Affichage interactif des logiciels en cours d'exécution.
+- **Stockage** : Visualisation de l'espace disque utilisé et disponible.
+
+### 🧹 Optimisation et Nettoyage
+- **Gestion des processus** : Fermeture sélective ou globale des logiciels pour libérer de la RAM.
+- **Nettoyage du cache** : Suppression des fichiers temporaires et caches système.
+- **Cache DNS** : Visualisation et vidage complet du cache DNS pour résoudre les problèmes de connexion.
+
+### 💾 Gestionnaire de Fichiers
+- **Exploration** : Navigation fluide dans les dossiers du système.
+- **Aperçu** : Visualisation du contenu des fichiers texte et détails techniques (taille, extension).
+- **Interface visuelle** : Icônes dédiées par type de fichier pour une reconnaissance rapide.
+
+### 💬 Chat Communauté
+- **Messagerie instantanée** : Chat en temps réel synchronisé via Supabase.
+- **Persistance** : Historique des messages conservé de manière sécurisée.
+- **Utilisateurs** : Affichage des membres connectés.
+
+### 🔐 Sécurité et Authentification
+- **Système de comptes** : Inscription et connexion sécurisées.
+- **Gestion de session** : Protection des données utilisateur via Supabase Auth.
+- **Sécurité des données** : Politiques RLS (Row Level Security) pour isoler les messages et profils.
+
+### ⚙️ Paramètres et Personnalisation
+- **Thèmes** : Basculement entre le mode Clair et le mode Sombre.
+- **Graphiques** : Personnalisation du style d'affichage des données.
+- **Préférences** : Sauvegarde locale des réglages utilisateur.
+
+## 4. Spécifications Techniques
+
+### Configuration Requise
+- **Langage** : Python 3.8 ou version supérieure.
+- **Systèmes compatibles** : Windows 10/11, macOS, Linux (Debian, Ubuntu, Fedora).
+
+### Technologies Utilisées
+- **GUI (Interface)** : `CustomTkinter` pour un design moderne et responsive.
+- **Backend / DB** : `Supabase` (PostgreSQL + Realtime).
+- **Système** : `psutil` pour la récupération des métriques matérielles.
+- **Graphiques** : `Matplotlib` et `Numpy`.
+- **Images** : `Pillow`.
+
+## 5. Fonctionnement sur la Machine
+Sur un ordinateur, Stark Log agit comme un assistant de maintenance. Il effectue les actions suivantes :
+1. **Lecture des sondes** : Interroge le système pour obtenir l'état de la mémoire et des disques.
+2. **Gestion de fichiers** : Interagit avec l'explorateur de fichiers pour lire et lister les répertoires.
+3. **Optimisation active** : Envoie des commandes pour terminer des processus ou vider les caches système (nécessite parfois des droits d'administrateur).
+4. **Réseau** : Communique avec les serveurs Supabase via HTTPS pour le chat et l'authentification.
+5. **Logs** : Écrit des fichiers de diagnostic dans le répertoire utilisateur (`%USERPROFILE%\.starklog` sur Windows).
+
+## 6. Développement et Architecture
+Le projet suit une structure modulaire :
+- `main.py` : Point d'entrée de l'application.
+- `ui/` : Contient toute la logique visuelle et les frames (pages).
+- `services/` : Gère la logique métier (connexion DB, monitoring système).
+- `config/` : Centralise les paramètres et thèmes du logiciel.

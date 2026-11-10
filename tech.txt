@@ -1,0 +1,82 @@
+Projet : Stark Log — Dossier technique
+=====================================
+
+1. Vue d'ensemble
+- Objectif : Application desktop Python (CustomTkinter) pour monitoring système, gestion du cache DNS, nettoyage de RAM, gestionnaire de fichiers et chat communautaire.
+- Point d'entrée : main.py
+
+2. Environnement et dépendances
+- Python recommandé : 3.8+
+- Dépendances principales (voir requirements.txt) : customtkinter, psutil, pillow, supabase, python-dotenv, matplotlib, numpy, requests.
+- Fichier dépendances : requirements.txt
+
+3. Structure du projet
+- racine
+  - main.py (bootstrap + charge `ui.app`)
+  - config/ (settings, constants, thème)
+  - services/ (auth_service.py, chat_service.py, cloudinary_service.py, database.py, network_info.py, supabase_client.py, system_monitor.py)
+  - ui/ (app.py, frames/, widgets/)
+  - supabase/migrations/ (SQL de migration)
+  - scripts : run.bat, run.sh
+
+4. Architecture et responsabilités
+- UI : `ui.app` orchestre la fenêtre principale et charge les frames (dashboard, storage, chat, settings, auth). Widgets spécialisés (ram_monitor, process_list, upload_progress) fournissent composants réutilisables.
+- Services : couche métier / intégration
+  - `system_monitor.py` : collecte metrics via psutil
+  - `supabase_client.py` & `auth_service.py` : gestion auth et opérations Supabase
+  - `chat_service.py` : logique d'envoi/réception des messages
+  - `database.py` : accès local/abstraction DB si présent
+  - `cloudinary_service.py` : gestion upload (si utilisée)
+- Config : `config/settings.py` pour les réglages locaux et thèmes.
+
+5. Base de données & migrations
+- Migrations SQL situées dans : supabase/migrations/
+- Backend : Supabase (variables d'environnement : SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY) — utilisez .env ou variables système.
+
+6. Exécution et développement local
+- Créer venv : `python -m venv venv` puis activer.
+- Installer : `pip install -r requirements.txt` ([requirements.txt](requirements.txt)).
+- Variables d'environnement : créer `.env` à la racine avec clés Supabase.
+- Lancer : `python main.py` ou via `run.bat` / `run.sh`.
+- Scripts utiles (définis dans package.json) :
+  - `python3 -m py_compile` pour vérifier que les fichiers Python compilent.
+  - `python3 main.py` (start)
+  - `python3 verify.py` (verify)
+  - `python3 test_imports.py` (test)
+
+7. Tests et vérifications
+- `test_imports.py` : utilitaire pour détecter import manquant
+- `verify.py` : script de vérification/config
+- Composer des tests unitaires recommandés pour `services/` et logique critique.
+
+8. Sécurité et bonnes pratiques
+- Ne pas committer les clés dans le dépôt — utiliser `.env` et secrets manager.
+- Restreindre les rôles Supabase (service role doit rester privé côté serveur).
+- Pour opérations sensibles (arrêt d'applications, vidage DNS) prévoir des contrôles d'élévation (UAC sur Windows).
+
+9. Observabilité et débogage
+- `main.py` imprime des informations d'environnement au démarrage (utile pour débogage).
+- Ajouter logs structurés (module `logging`) dans `services/` pour tracer erreurs et actions critiques.
+
+10. Déploiement / Distribution
+- Application desktop Python ; pour distribution sur Windows, créer un exécutable (`pyinstaller` ou `cx_Freeze`) après stabilisation.
+- Pour la partie backend (Supabase), suivre les bonnes pratiques de déploiement Supabase et de gestion des migrations SQL.
+
+11. Maintenance et évolutions recommandées
+- Ajouter tests unitaires et CI (GitHub Actions) pour linting et tests.
+- Isoler les appels réseau pour les mock dans les tests (Supabase, Cloudinary).
+- Documenter les APIs internes entre UI et services (README + docstring).
+- Ajouter gestionnaire d'erreurs global et rapport d'incident (sauvegarde dans un fichier logs/).
+
+12. Emplacement des fichiers importants
+- Lecture principale : [README.md](README.md)
+- Dépendances : [requirements.txt](requirements.txt)
+- Point d'entrée : [main.py](main.py)
+- Migrations : supabase/migrations/
+- Tests utilitaires : [test_imports.py](test_imports.py), [verify.py](verify.py)
+
+13. Contact & auteur
+- Auteur (champ `author` dans package.json) : voir [package.json](package.json)
+
+---
+Fichier généré automatiquement : `tech.txt` — adapter et compléter selon contextes d'exploitation (clés, infra Supabase, comptes Cloudinary).
