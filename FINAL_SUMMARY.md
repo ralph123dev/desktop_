@@ -64,11 +64,7 @@ run.bat                  # Windows
 ```
 
 ### 4. Utiliser
-```
-- Créez un compte
-- Connectez-vous
-- Explorez!
-```
+Lancez l'application et explorez le Dashboard.
 
 ## 📚 Documentation Disponible
 

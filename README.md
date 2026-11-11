@@ -28,13 +28,11 @@ Une application desktop complète pour surveiller et gérer votre ordinateur en 
 
 ### 💬 Chat Communauté
 - Chat en temps réel avec les autres utilisateurs
-- Système d'authentification Supabase
 - Messages synchronisés en direct
 
 ### ⚙️ Paramètres
 - Mode sombre/clair
 - Styles de graphiques (courbe/cercle)
-- Gestion du compte utilisateur
 
 ## Installation
 
@@ -79,7 +77,6 @@ project/
 │   └── settings.py        # Gestion des paramètres locaux
 ├── services/
 │   ├── system_monitor.py  # Monitoring système
-│   ├── auth_service.py    # Authentification Supabase
 │   ├── chat_service.py    # Service chat
 │   └── supabase_client.py # Client Supabase
 ├── ui/
@@ -89,7 +86,6 @@ project/
 │   │   ├── storage.py    # Gestionnaire de fichiers
 │   │   ├── chat.py       # Chat
 │   │   ├── settings.py   # Paramètres
-│   │   └── auth.py       # Authentification
 │   └── widgets/
 │       ├── ram_monitor.py      # Widget RAM
 │       ├── cleanup_popup.py    # Popup nettoyage
@@ -104,15 +100,10 @@ project/
 - **CustomTkinter**: Interface utilisateur moderne
 - **Psutil**: Monitoring système
 - **Matplotlib**: Graphiques temps réel
-- **Supabase**: Backend et authentification
+- **Supabase**: Backend
 - **Python 3.8+**: Langage principal
 
 ## Utilisation
-
-### Première connexion
-1. Cliquez sur "Créer un compte"
-2. Entrez un email, mot de passe et nom d'utilisateur
-3. Connectez-vous avec vos identifiants
 
 ### Dashboard
 - Consultez l'utilisation RAM en temps réel
@@ -124,7 +115,7 @@ project/
 - Cliquez "Vider le Cache" pour nettoyer
 
 ### Chat
-- Connectez-vous pour accéder au chat communauté
+- Accédez au chat communauté depuis le menu
 - Envoyez des messages aux autres utilisateurs
 - Les messages se synchronisent en temps réel
 

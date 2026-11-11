@@ -8,10 +8,6 @@ from tkinter import messagebox
 load_dotenv()
 
 print("Current working directory:", os.getcwd())
-print("Environment variables:")
-for key, value in os.environ.items():
-    if 'SUPABASE' in key:
-        print(f"{key}: {value}")
 print(".env file exists:", os.path.exists(".env"))
 print("Python version:", sys.version)
 

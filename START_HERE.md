@@ -65,18 +65,7 @@ python3 main.py
 
 ## ✅ Étape 3: Première Utilisation (2 minutes)
 
-1. **Créez un compte**:
-   - Cliquez "Créer un compte"
-   - Email: `votre@email.com`
-   - Mot de passe: Minimum 6 caractères
-   - Nom d'utilisateur: Unique
-   - Cliquez "S'inscrire"
-
-2. **Connectez-vous**:
-   - Email + Mot de passe
-   - Cliquez "Connexion"
-
-3. **Explorez!** 🎉
+1. **Explorez!** 🎉
    - Consultez le Dashboard
    - Essayez le nettoyage de RAM
    - Visitez le Chat
@@ -139,7 +128,7 @@ deactivate
 - ⚡ Améliorez les performances
 
 ### Chat
-- 💬 Connectez-vous avec d'autres utilisateurs
+- 💬 Échangez avec les autres utilisateurs
 - 🔄 Synchronisation temps réel
 - 📝 Historique conservé
 

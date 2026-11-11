@@ -6,6 +6,7 @@ from ui.widgets.ram_monitor import RAMMonitor
 from ui.widgets.cleanup_popup import CleanupPopup
 from ui.widgets.dns_popup import DNSPopup
 from ui.widgets.process_list import ProcessListPopup
+from ui.widgets.dashboard_icon import create_dashboard_icon
 
 class DashboardFrame(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -33,7 +34,9 @@ class DashboardFrame(ctk.CTkFrame):
 
         title = ctk.CTkLabel(
             header,
-            text="📊 Dashboard Système",
+            text="Dashboard Système",
+            image=create_dashboard_icon(24, "#00d9ff", "#00d9ff"),
+            compound="left",
             font=("Arial", 24, "bold"),
             text_color="#00d9ff"
         )
@@ -109,15 +112,6 @@ class DashboardFrame(ctk.CTkFrame):
         self.disk_container.grid_columnconfigure(0, weight=1)
         current_row += 1
 
-        # Login button for guest mode
-        if self.controller.current_user["id"] is None:
-            self.login_button = ctk.CTkButton(
-                self.content,
-                text="Se connecter / S'inscrire",
-                command=self.show_auth
-            )
-            self.login_button.grid(row=current_row, column=0, pady=10, padx=10, sticky="e")
-
     def update_loop(self):
         while self.running:
             try:
@@ -171,9 +165,6 @@ class DashboardFrame(ctk.CTkFrame):
 
     def show_process_list(self):
         ProcessListPopup(self.controller, self.monitor)
-
-    def show_auth(self):
-        self.controller.show_auth_frame()
 
     def destroy(self):
         # Arrêter proprement tous les moniteurs et la boucle d'uodate

@@ -45,9 +45,7 @@ python3 main.py
 
 ### Étape 4: Utilisation (30 sec)
 
-1. Créez un compte
-2. Connectez-vous
-3. Explorez!
+Explorez le Dashboard et les autres pages depuis le menu.
 
 ## Fonctionnalités Principales
 

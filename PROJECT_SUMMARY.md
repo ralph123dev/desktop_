@@ -41,12 +41,6 @@ Version: **1.0.0**
 - ✅ Affichage des utilisateurs
 - ✅ Messages persistants
 
-### Authentification (🔐)
-- ✅ Système d'inscription
-- ✅ Connexion sécurisée
-- ✅ Gestion des sessions
-- ✅ Intégration Supabase Auth
-
 ### Paramètres (⚙️)
 - ✅ Mode sombre/clair
 - ✅ Styles de graphiques
@@ -79,7 +73,6 @@ stark-log/
 │
 ├── services/                  # Services métier
 │   ├── system_monitor.py     # Monitoring système
-│   ├── auth_service.py       # Authentification
 │   ├── chat_service.py       # Service chat
 │   └── supabase_client.py    # Client Supabase
 │
@@ -89,8 +82,7 @@ stark-log/
     │   ├── dashboard.py      # Dashboard
     │   ├── storage.py        # Gestionnaire fichiers
     │   ├── chat.py           # Chat
-    │   ├── settings.py       # Paramètres
-    │   └── auth.py           # Authentification
+    │   └── settings.py       # Paramètres
     └── widgets/              # Composants réutilisables
         ├── ram_monitor.py    # Widget RAM
         ├── cleanup_popup.py  # Popup nettoyage
@@ -102,7 +94,7 @@ stark-log/
 
 - **Python 3.8+**: Langage principal
 - **CustomTkinter**: Interface GUI moderne
-- **Supabase**: Base de données et authentification
+- **Supabase**: Base de données
 - **Psutil**: Monitoring système
 - **Matplotlib**: Graphiques temps réel
 - **Numpy**: Calculs numériques

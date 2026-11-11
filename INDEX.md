@@ -57,7 +57,6 @@ Gestion des paramètres et configuration
 ### 📁 services/
 Services métier et communication
 - `system_monitor.py` - Monitoring système (RAM, CPU, disques)
-- `auth_service.py` - Authentification Supabase
 - `chat_service.py` - Service de chat temps réel
 - `supabase_client.py` - Client Supabase singleton
 
@@ -71,7 +70,6 @@ Pages principales de l'application
 - `storage.py` - Gestionnaire de fichiers
 - `chat.py` - Chat communauté
 - `settings.py` - Paramètres utilisateur
-- `auth.py` - Écran d'authentification
 
 #### 📁 ui/widgets/
 Composants réutilisables
@@ -124,7 +122,7 @@ Dashboard principal
 - 32 fichiers (Python + Markdown)
 - 1 800+ lignes de code Python
 - 4 modules principaux (config, services, ui, widgets)
-- 5 frames UI (dashboard, storage, chat, settings, auth)
+- 4 frames UI (dashboard, storage, chat, settings)
 - 4 widgets réutilisables
 - 7 documents de documentation
 

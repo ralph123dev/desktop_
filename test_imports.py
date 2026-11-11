@@ -16,7 +16,6 @@ try:
 
     print("\n✓ Importing services...")
     from services.system_monitor import SystemMonitor
-    from services.auth_service import AuthService
     from services.chat_service import ChatService
     from services.supabase_client import get_supabase
     print("  ✓ services OK")
@@ -27,9 +26,9 @@ try:
     from ui.frames.storage import StorageFrame
     from ui.frames.chat import ChatFrame
     from ui.frames.settings import SettingsFrame
-    from ui.frames.auth import AuthFrame
     print("  ✓ frames OK")
 
+    from ui.widgets.dashboard_icon import create_dashboard_icon
     from ui.widgets.ram_monitor import RAMMonitor
     from ui.widgets.cleanup_popup import CleanupPopup
     from ui.widgets.dns_popup import DNSPopup

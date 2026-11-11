@@ -46,19 +46,6 @@ python3 main.py
 
 ## Guide Utilisateur
 
-### Première Connexion
-
-1. **Créer un compte**:
-   - Cliquez sur "Créer un compte"
-   - Entrez un email valide
-   - Choisissez un mot de passe (min 6 caractères)
-   - Entrez un nom d'utilisateur unique
-   - Cliquez "S'inscrire"
-
-2. **Se connecter**:
-   - Entrez votre email et mot de passe
-   - Cliquez "Connexion"
-
 ### Dashboard
 
 #### Surveillance RAM
@@ -112,11 +99,10 @@ Trois options:
 
 ### Chat Communauté
 
-1. Connectez-vous
-2. Allez dans l'onglet "Chat"
-3. Tapez votre message
-4. Appuyez sur "Entrée" ou cliquez "📤 Envoyer"
-5. Les messages se synchronisent en temps réel
+1. Allez dans l'onglet "Chat"
+2. Tapez votre message
+3. Appuyez sur "Entrée" ou cliquez "📤 Envoyer"
+4. Les messages se synchronisent en temps réel
 
 ### Paramètres
 

@@ -33,7 +33,7 @@
 
 1. Installez Python et pip:
    ```bash
-   sudo apt-get install python3 python3-pip
+   sudo apt-get install python3 python3-pip python3-tk
    ```
 2. Dans le dossier du projet:
    ```bash
@@ -129,7 +129,6 @@ stark-log/
 │   └── theme.py
 ├── services/             # Services
 │   ├── system_monitor.py
-│   ├── auth_service.py
 │   ├── chat_service.py
 │   └── supabase_client.py
 └── ui/                   # Interface utilisateur
@@ -138,8 +137,7 @@ stark-log/
     │   ├── dashboard.py
     │   ├── storage.py
     │   ├── chat.py
-    │   ├── settings.py
-    │   └── auth.py
+    │   └── settings.py
     └── widgets/
         ├── ram_monitor.py
         ├── cleanup_popup.py
@@ -150,8 +148,6 @@ stark-log/
 ## Après Installation
 
 1. **Première utilisation**:
-   - Créez un compte
-   - Connectez-vous
    - Explorez le Dashboard
 
 2. **Activation des fonctionnalités avancées**:

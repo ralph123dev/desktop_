@@ -2,12 +2,11 @@ import customtkinter as ctk
 from ui.frames.dashboard import DashboardFrame
 from ui.frames.storage import StorageFrame
 from ui.frames.settings import SettingsFrame
-from ui.frames.auth import AuthFrame
 from ui.frames.data import DataFrame
 from ui.frames.network import NetworkFrame
-from config.settings import settings
-import threading
+from ui.widgets.dashboard_icon import create_navigation_icon
 import ctypes
+
 
 def is_admin():
     try:
@@ -27,9 +26,6 @@ class StarkLogApp(ctk.CTk):
         self.geometry("1400x800")
         self.resizable(True, True)
 
-        # Initialiser l'utilisateur
-        self.current_user = {"id": None, "username": "Guest"}
-        
         # Créer d'abord le layout
         self.create_layout()
         
@@ -65,42 +61,37 @@ class StarkLogApp(ctk.CTk):
         separator.pack(fill="x", padx=10, pady=10)
 
         self.nav_buttons = {}
-
         nav_items = [
-            ("Dashboard", "📊"),
-            ("Data", "🌐"),
-            ("Réseau", "📡"),
-            ("Stockage", "💾"),
-            ("Ultre Clean", "🛡️"),
-            ("Paramètres", "⚙️"),
-            ("Quitter", "❌"),
+            ("Dashboard", "bar-chart"),
+            ("Data", "wifi"),
+            ("Réseau", "router"),
+            ("Stockage", "sd-card"),
+            ("Ultre Clean", "virus"),
+            ("Paramètres", "gear"),
+            ("Quitter", "x-circle"),
         ]
 
-        for name, icon in nav_items:
+        for name, icon_name in nav_items:
+            button_options = {
+                "text": name,
+                "font": ("Arial", 14, "bold"),
+                "fg_color": "transparent",
+                "hover_color": "#00d9ff",
+                "text_color": ("black", "white"),
+                "command": lambda n=name: self.switch_frame(n),
+                "image": create_navigation_icon(icon_name),
+                "compound": "left",
+            }
+
             btn = ctk.CTkButton(
                 self.sidebar,
-                text=f"{icon} {name}",
-                font=("Arial", 14, "bold"),
-                fg_color="transparent",
-                hover_color="#00d9ff",
-                text_color=("black", "white"),
-                command=lambda n=name: self.switch_frame(n)
+                **button_options,
             )
             btn.pack(fill="x", padx=10, pady=8)
             self.nav_buttons[name] = btn
 
         separator2 = ctk.CTkFrame(self.sidebar, height=2, fg_color="#333333")
         separator2.pack(fill="x", padx=10, pady=20)
-
-        logout_btn = ctk.CTkButton(
-            self.sidebar,
-            text="🚪 Déconnexion",
-            font=("Arial", 12, "bold"),
-            fg_color="#ff3333",
-            hover_color="#cc0000",
-            command=self.logout
-        )
-        logout_btn.pack(fill="x", padx=10, pady=8)
 
         # Admin status indicator
         admin_status = "Mode Administrateur" if is_admin() else "Mode Utilisateur"
@@ -147,39 +138,10 @@ class StarkLogApp(ctk.CTk):
     def show_dashboard(self):
         self.switch_frame("Dashboard")
 
-    def show_auth_frame(self):
-        for widget in self.winfo_children():
-            widget.destroy()
-
-        auth_frame = AuthFrame(self, self)
-        auth_frame.pack(fill="both", expand=True)
-
     def clear_frames(self):
         # Nettoyer tous les widgets du content_frame
         for widget in self.content_frame.winfo_children():
             widget.destroy()
-
-    def login_success(self, user_id, username):
-        settings.set("user_id", user_id)
-        settings.set("username", username)
-        self.current_user = user_id
-
-        for widget in self.winfo_children():
-            widget.destroy()
-
-        self.create_layout()
-        self.show_dashboard()
-
-    def logout(self):
-        settings.set("user_id", None)
-        settings.set("username", None)
-        self.current_user = None
-        
-        for widget in self.winfo_children():
-            widget.destroy()
-            
-        self.create_layout()
-        self.show_auth_frame()
 
     def quit_app(self):
         # Arrêter proprement tous les timers et threads
