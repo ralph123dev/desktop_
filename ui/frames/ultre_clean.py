@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import threading
 import ctypes
+import tkinter as tk
 from tkinter import messagebox
 from services.usb_antivirus import USBAntivirusService
 
@@ -16,8 +17,13 @@ class UltreCleanFrame(ctk.CTkFrame):
         self.app = app
         self.checking = False
         self.target_usb_name = ""
+        self.closing = False
+        self.usb_refreshing = False
+        self.usb_refresh_after_id = None
 
         self.setup_ui()
+        self.refresh_usb_list()
+        self.schedule_usb_refresh()
 
     def setup_ui(self):
         # Titre
@@ -28,6 +34,40 @@ class UltreCleanFrame(ctk.CTkFrame):
             text_color="#00d9ff"
         )
         self.title.pack(pady=30)
+
+        self.usb_frame = ctk.CTkFrame(self, fg_color=("#f0f0f0", "#1a1a1a"))
+        self.usb_frame.pack(pady=(0, 15), padx=40, fill="x")
+
+        usb_header = ctk.CTkFrame(self.usb_frame, fg_color="transparent")
+        usb_header.pack(fill="x", padx=15, pady=(12, 4))
+
+        ctk.CTkLabel(
+            usb_header,
+            text="CLÉS USB CONNECTÉES",
+            font=("Arial", 16, "bold"),
+            text_color="#00d9ff",
+        ).pack(side="left")
+
+        self.usb_refresh_button = ctk.CTkButton(
+            usb_header,
+            text="Actualiser",
+            width=100,
+            command=self.refresh_usb_list,
+        )
+        self.usb_refresh_button.pack(side="right")
+
+        self.usb_list = ctk.CTkScrollableFrame(
+            self.usb_frame,
+            fg_color="transparent",
+            height=110,
+        )
+        self.usb_list.pack(fill="x", padx=10, pady=(0, 10))
+        self.usb_status_label = ctk.CTkLabel(
+            self.usb_list,
+            text="Recherche des clés USB...",
+            text_color="#888888",
+        )
+        self.usb_status_label.pack(pady=12)
 
         # Zone de status et log
         self.status_label = ctk.CTkLabel(
@@ -104,6 +144,108 @@ class UltreCleanFrame(ctk.CTkFrame):
             command=self.manual_scan_prompt
         )
         self.btn_scan.pack(pady=20)
+
+    def refresh_usb_list(self):
+        if self.closing or self.usb_refreshing:
+            return
+
+        self.usb_refreshing = True
+        self.usb_refresh_button.configure(state="disabled")
+        threading.Thread(target=self.load_usb_list, daemon=True).start()
+
+    def load_usb_list(self):
+        try:
+            drives = USBAntivirusService.get_removable_drives()
+        except Exception as error:
+            try:
+                self.after(0, self.show_usb_error, error)
+            except tk.TclError:
+                pass
+            return
+
+        try:
+            self.after(0, self.display_usb_list, drives)
+        except tk.TclError:
+            pass
+
+    def display_usb_list(self, drives):
+        self.usb_refreshing = False
+        if self.closing:
+            return
+
+        self.usb_refresh_button.configure(state="normal")
+        for widget in self.usb_list.winfo_children():
+            widget.destroy()
+
+        if not drives:
+            self.usb_status_label = ctk.CTkLabel(
+                self.usb_list,
+                text="Aucune clé USB détectée.",
+                text_color="#888888",
+            )
+            self.usb_status_label.pack(pady=12)
+            return
+
+        for drive in drives:
+            total = self.format_storage_size(drive["total_size"])
+            used = self.format_storage_size(drive["used_size"])
+            free = self.format_storage_size(drive["free_size"])
+            details = (
+                f"{drive['mountpoint']}  •  "
+                f"Utilisé : {used} / {total} ({drive['percent']:.1f} %)  •  "
+                f"Libre : {free}"
+            )
+            drive_row = ctk.CTkFrame(
+                self.usb_list,
+                fg_color=("#e0e0e0", "#2a2a2a"),
+                corner_radius=8,
+            )
+            drive_row.pack(fill="x", padx=4, pady=4)
+            ctk.CTkLabel(
+                drive_row,
+                text=drive["name"],
+                font=("Arial", 13, "bold"),
+                anchor="w",
+            ).pack(fill="x", padx=12, pady=(8, 0))
+            ctk.CTkLabel(
+                drive_row,
+                text=details,
+                font=("Arial", 11),
+                text_color="#888888",
+                anchor="w",
+            ).pack(fill="x", padx=12, pady=(2, 8))
+
+    def show_usb_error(self, error):
+        self.usb_refreshing = False
+        if self.closing:
+            return
+
+        self.usb_refresh_button.configure(state="normal")
+        for widget in self.usb_list.winfo_children():
+            widget.destroy()
+        ctk.CTkLabel(
+            self.usb_list,
+            text=f"Erreur lors de la détection des clés USB : {error}",
+            text_color="#ff3333",
+            wraplength=500,
+        ).pack(pady=12)
+
+    def schedule_usb_refresh(self):
+        if not self.closing:
+            self.usb_refresh_after_id = self.after(5000, self.run_scheduled_usb_refresh)
+
+    def run_scheduled_usb_refresh(self):
+        self.usb_refresh_after_id = None
+        self.refresh_usb_list()
+        self.schedule_usb_refresh()
+
+    @staticmethod
+    def format_storage_size(size):
+        value = float(size)
+        for unit in ("o", "Ko", "Mo", "Go", "To"):
+            if value < 1024 or unit == "To":
+                return f"{value:.1f} {unit}"
+            value /= 1024
 
     def update_status(self, text, color="#cccccc"):
         self.after(0, lambda: self.status_label.configure(text=text, text_color=color))
@@ -193,3 +335,9 @@ class UltreCleanFrame(ctk.CTkFrame):
         self.scan_loader.pack_forget()
         messagebox.showinfo("Scan Terminé", msg)
         self.update_status("Scan terminé.", "#ffffff")
+
+    def destroy(self):
+        self.closing = True
+        if self.usb_refresh_after_id is not None:
+            self.after_cancel(self.usb_refresh_after_id)
+        super().destroy()

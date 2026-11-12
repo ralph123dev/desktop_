@@ -2,8 +2,9 @@ import os
 import time
 import psutil
 import subprocess
-import threading
-from typing import Optional, Dict, List
+import platform
+from pathlib import Path
+from typing import Dict, List
 
 class USBAntivirusService:
     @staticmethod
@@ -11,21 +12,76 @@ class USBAntivirusService:
         """Récupère la liste des lecteurs amovibles connectés."""
         drives = []
         for partition in psutil.disk_partitions():
-            if 'removable' in partition.opts or 'cdrom' not in partition.opts: # Simple filter, logic might need refinement for strict USB detection
-                # Windows usually marks USBs as removable.
-                # Just incase, we usually check checks for 'removable'.
-                if 'removable' in partition.opts:
-                    try:
-                        usage = psutil.disk_usage(partition.mountpoint)
-                        drives.append({
-                            'device': partition.device,
-                            'mountpoint': partition.mountpoint,
-                            'total_size': usage.total,
-                            'fstype': partition.fstype
-                        })
-                    except Exception:
-                        pass
+            if not USBAntivirusService._is_removable_partition(partition):
+                continue
+
+            try:
+                usage = psutil.disk_usage(partition.mountpoint)
+            except (OSError, PermissionError):
+                continue
+
+            name = USBAntivirusService._get_partition_name(partition)
+            drives.append({
+                'device': partition.device,
+                'mountpoint': partition.mountpoint,
+                'name': name,
+                'total_size': usage.total,
+                'used_size': usage.used,
+                'free_size': usage.free,
+                'percent': usage.percent,
+                'fstype': partition.fstype
+            })
         return drives
+
+    @staticmethod
+    def _is_removable_partition(partition) -> bool:
+        if 'removable' in partition.opts:
+            return True
+
+        if platform.system() != "Linux":
+            return False
+
+        device_name = Path(partition.device).name
+        if not device_name:
+            return False
+
+        sysfs_path = Path("/sys/class/block") / device_name
+        if not sysfs_path.exists():
+            return False
+
+        resolved_path = sysfs_path.resolve()
+        if any(part.startswith("usb") for part in resolved_path.parts):
+            return True
+
+        for parent in (resolved_path, *resolved_path.parents):
+            removable_flag = parent / "removable"
+            try:
+                if removable_flag.read_text().strip() == "1":
+                    return True
+            except OSError:
+                continue
+
+        return False
+
+    @staticmethod
+    def _get_partition_name(partition) -> str:
+        device_name = Path(partition.device).name or partition.device
+        if platform.system() == "Windows":
+            return USBAntivirusService.get_volume_name(partition.device) or device_name
+
+        try:
+            result = subprocess.run(
+                ["lsblk", "-no", "LABEL", "--", partition.device],
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=2,
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            return device_name
+
+        label = result.stdout.strip()
+        return label or device_name
 
     @staticmethod
     def get_volume_name(drive_letter: str) -> str:
@@ -51,8 +107,7 @@ class USBAntivirusService:
         while True:
             drives = USBAntivirusService.get_removable_drives()
             for drive in drives:
-                drive_letter = drive['mountpoint'].rstrip('\\')
-                label = USBAntivirusService.get_volume_name(drive_letter)
+                label = drive['name']
                 
                 # Check match (case insensitive)
                 if label.lower() == target_name.lower():
